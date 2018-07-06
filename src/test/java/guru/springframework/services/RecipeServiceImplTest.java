@@ -13,28 +13,33 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import guru.springframework.command.converter.RecipeCommandToRecipe;
+import guru.springframework.command.converter.RecipeToRecipeCommand;
 import guru.springframework.model.Recipe;
 import guru.springframework.repositories.RecipeRepository;
 
 /*
- * Remember that we run a test the bootstrap class won't actually be run so do not expect 
+ * Remember that we run a test, so the bootstrap class won't actually be run. Thus, do not expect 
  * to have Recipe's table populated with a single row.
  */
 public class RecipeServiceImplTest {
 
-	RecipeServiceImpl recipeService;
-	
+	private RecipeServiceImpl recipeService;
+	private RecipeCommandToRecipe recipeCommandToRecipe;
+	private RecipeToRecipeCommand recipeToRecipeCommand;
 	/*
 	 * Since we need to inject the RecipeRepository we mark with the Mock annotation 
 	 */
 	@Mock
 	RecipeRepository recipeRepository;
 	
+	
+	
 	@Before
 	public void setUp() throws Exception {
 		//Initializing mockito tests
 		MockitoAnnotations.initMocks(this);
-		recipeService = new RecipeServiceImpl(recipeRepository);
+		recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
 	}
 
 	@Test

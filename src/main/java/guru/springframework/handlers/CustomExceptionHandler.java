@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-//@ControllerAdvice
+@ControllerAdvice
 public class CustomExceptionHandler {
 	
 	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss Z");
 	
 	@ExceptionHandler(NullPointerException.class)
-	public ModelAndView handleNullPointer(NullPointerException npe) {
+	public ModelAndView handleNullPointer(HttpServletRequest req, HttpServletResponse resp, NullPointerException npe) {
 		ModelAndView modelView = new ModelAndView("error");
 		modelView.addObject("reason", "Some missing data");
+		fillCause(modelView, req, resp, npe);
 		return modelView;
 	}
 	

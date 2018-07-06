@@ -135,11 +135,11 @@ public class IndexControllerTest {
 		rec1.setId(id);
 		rec1.setDescription("Mock recipe");
 		recipeServiceMock.create(rec1);
-		when(recipeServiceMock.findById(id)).thenReturn(Optional.of(rec1));
+		when(recipeServiceMock.findById(id));
 
 		ArgumentCaptor<Recipe> argCaptorRecipe = ArgumentCaptor.forClass(Recipe.class);
 		
-		Optional<Recipe> optRecipe = recipeServiceMock.findById(id);
+		Recipe optRecipe = recipeServiceMock.findById(id);
 		/**
 		 *  If we forget using verify, we will this stack trace error giving additional suggestions
 		 *  org.mockito.exceptions.base.MockitoException: 

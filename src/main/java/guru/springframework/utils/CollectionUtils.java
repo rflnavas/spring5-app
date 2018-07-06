@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import org.springframework.stereotype.Component;
+
 /**
  * A small utility class for collections and streams to be utilized throughout this app.
- *
- * @author privado
  */
 public class CollectionUtils {
 	
